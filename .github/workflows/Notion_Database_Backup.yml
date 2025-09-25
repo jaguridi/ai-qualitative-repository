@@ -9,6 +9,11 @@ on:
 jobs:
   backup:
     runs-on: ubuntu-latest
+
+    # --- FIX IS HERE: GRANTING WRITE PERMISSIONS ---
+    permissions:
+      contents: write
+
     steps:
       - name: Check out repository
         uses: actions/checkout@v3
@@ -18,7 +23,6 @@ jobs:
         with:
           node-version: '18'
 
-      # --- FIX IS ON THIS LINE ---
       - name: Install Notion SDK (Pinned Version)
         run: npm install @notionhq/client@2.2.14
 
@@ -54,8 +58,6 @@ jobs:
                 if (dbId) {
                   console.log(\`Fetching data for \${fileName}...\`);
                   const pages = await fetchAllPages(dbId);
-
-                  // Added a check to handle empty databases gracefully
                   if (pages.length === 0) {
                     console.log(\`Database for \${fileName} is empty. Writing empty array.\`);
                     fs.writeFileSync(fileName, JSON.stringify([], null, 2));
