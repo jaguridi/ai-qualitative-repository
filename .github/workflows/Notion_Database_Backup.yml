@@ -2,14 +2,12 @@ name: Notion Database Backup
 
 on:
   schedule:
-    # Runs at 8:00 UTC every Monday. You can change this.
-    - cron: '0 8 * * 1'
-  workflow_dispatch: # Allows you to run it manually
+    - cron: '0 8 * * 1' # Runs at 8:00 UTC every Monday
+  workflow_dispatch: # Allows manual runs
 
 jobs:
   backup:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
@@ -22,48 +20,8 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Notion SDK (Pinned Version)
+      - name: Install Notion SDK
         run: npm install @notionhq/client@2.2.14
-
-      - name: Create script to fetch JSON
-        run: |
-          cat <<'EOF' > fetch_json.js
-          const { Client } = require('@notionhq/client');
-          const fs = require('fs');
-          const notion = new Client({ auth: process.env.NOTION_API_KEY });
-          const databases = {
-            'tools.json': process.env.NOTION_TOOLS_DB_ID,
-            'literature.json': process.env.NOTION_LITERATURE_DB_ID,
-            'training.json': process.env.NOTION_TRAINING_DB_ID,
-            'use_cases.json': process.env.NOTION_USE_CASES_DB_ID
-          };
-          async function fetchAllPages(databaseId) {
-            let results = [];
-            let hasMore = true;
-            let startCursor = undefined;
-            while (hasMore) {
-              const response = await notion.databases.query({
-                database_id: databaseId,
-                start_cursor: startCursor,
-              });
-              results = results.concat(response.results);
-              hasMore = response.has_more;
-              startCursor = response.next_cursor;
-            }
-            return results;
-          }
-          async function backup() {
-            for (const [fileName, dbId] of Object.entries(databases)) {
-              if (dbId) {
-                console.log(`Fetching data for ${fileName}...`);
-                const pages = await fetchAllPages(dbId);
-                fs.writeFileSync(fileName, JSON.stringify(pages, null, 2));
-                console.log(`Successfully saved ${fileName}`);
-              }
-            }
-          }
-          backup();
-          EOF
 
       - name: Step 1: Fetch and Save Notion Data as JSON
         run: node fetch_json.js
@@ -74,63 +32,9 @@ jobs:
           NOTION_TRAINING_DB_ID: ${{ secrets.NOTION_TRAINING_DB_ID }}
           NOTION_USE_CASES_DB_ID: ${{ secrets.NOTION_USE_CASES_DB_ID }}
 
-      - name: Create script to convert CSV
-        run: |
-          cat <<'EOF' > convert_csv.js
-          const fs = require('fs');
-          const files = ['tools.json', 'literature.json', 'training.json', 'use_cases.json'];
-          
-          function getPropertyValue(prop) {
-            if (!prop) return '';
-            switch (prop.type) {
-              case 'title': return prop.title[0]?.plain_text || '';
-              case 'rich_text': return prop.rich_text.map(rt => rt.plain_text).join('');
-              case 'number': return prop.number !== null ? String(prop.number) : '';
-              case 'url': return prop.url || '';
-              case 'select': return prop.select?.name || '';
-              case 'multi_select': return prop.multi_select.map(s => s.name).join(', ');
-              case 'email': return prop.email || '';
-              case 'date': return prop.date?.start || '';
-              case 'relation': return prop.relation.map(r => r.id).join(', ');
-              default: return '';
-            }
-          }
-          
-          function toCsvCell(str) {
-              str = String(str);
-              if (str.includes(',') || str.includes('"') || str.includes('\n')) {
-                  return '"' + str.replace(/"/g, '""') + '"';
-              }
-              return str;
-          }
-
-          for (const jsonFile of files) {
-            if (!fs.existsSync(jsonFile)) continue;
-            const data = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
-            if (data.length === 0) {
-              console.log(`${jsonFile} is empty, creating empty CSV.`);
-              const csvFile = jsonFile.replace('.json', '.csv');
-              fs.writeFileSync(csvFile, ""); // Create an empty file
-              continue;
-            }
-            const headers = Object.keys(data[0].properties);
-            const csvHeaders = headers.map(toCsvCell).join(',');
-            const csvRows = data.map(page => {
-              return headers.map(header => {
-                const value = getPropertyValue(page.properties[header]);
-                return toCsvCell(value);
-              }).join(',');
-            });
-            const csvContent = [csvHeaders, ...csvRows].join('\n');
-            const csvFile = jsonFile.replace('.json', '.csv');
-            fs.writeFileSync(csvFile, csvContent);
-            console.log(`Successfully converted ${jsonFile} to ${csvFile}`);
-          }
-          EOF
-          
       - name: Step 2: Convert JSON to CSV
         run: node convert_csv.js
-
+        
       - name: Step 3: Commit and push changes
         run: |
           git config --global user.name 'GitHub Actions Bot'
