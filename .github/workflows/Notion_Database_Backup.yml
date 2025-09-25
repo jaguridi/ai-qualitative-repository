@@ -1,0 +1,69 @@
+name: Notion Database Backup
+
+on:
+  schedule:
+    # Runs at 8:00 UTC every Monday. You can change this.
+    - cron: '0 8 * * 1'
+  workflow_dispatch: # Allows you to run it manually
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Notion SDK
+        run: npm install @notionhq/client
+
+      - name: Fetch and Save Notion Data
+        run: |
+          node -e "
+            const { Client } = require('@notionhq/client');
+            const fs = require('fs');
+            const notion = new Client({ auth: '${{ secrets.NOTION_API_KEY }}' });
+            const databases = {
+              'tools.json': '${{ secrets.NOTION_TOOLS_DB_ID }}',
+              'literature.json': '${{ secrets.NOTION_LITERATURE_DB_ID }}',
+              'training.json': '${{ secrets.NOTION_TRAINING_DB_ID }}',
+              'use_cases.json': '${{ secrets.NOTION_USE_CASES_DB_ID }}'
+            };
+            async function fetchAllPages(databaseId) {
+              let results = [];
+              let hasMore = true;
+              let startCursor = undefined;
+              while (hasMore) {
+                const response = await notion.databases.query({
+                  database_id: databaseId,
+                  start_cursor: startCursor,
+                });
+                results = results.concat(response.results);
+                hasMore = response.has_more;
+                startCursor = response.next_cursor;
+              }
+              return results;
+            }
+            async function backup() {
+              for (const [fileName, dbId] of Object.entries(databases)) {
+                if (dbId) {
+                  console.log(\`Fetching data for \${fileName}...\`);
+                  const pages = await fetchAllPages(dbId);
+                  fs.writeFileSync(fileName, JSON.stringify(pages, null, 2));
+                  console.log(\`Successfully backed up to \${fileName}\`);
+                }
+              }
+            }
+            backup();
+          "
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Automated Notion backup [$(date)]" || echo "No changes to commit"
+          git push
