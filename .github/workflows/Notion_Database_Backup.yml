@@ -18,8 +18,9 @@ jobs:
         with:
           node-version: '18'
 
-      - name: Install Notion SDK
-        run: npm install @notionhq/client
+      # --- FIX IS ON THIS LINE ---
+      - name: Install Notion SDK (Pinned Version)
+        run: npm install @notionhq/client@2.2.14
 
       - name: Fetch and Save Notion Data
         run: |
@@ -53,8 +54,15 @@ jobs:
                 if (dbId) {
                   console.log(\`Fetching data for \${fileName}...\`);
                   const pages = await fetchAllPages(dbId);
-                  fs.writeFileSync(fileName, JSON.stringify(pages, null, 2));
-                  console.log(\`Successfully backed up to \${fileName}\`);
+
+                  // Added a check to handle empty databases gracefully
+                  if (pages.length === 0) {
+                    console.log(\`Database for \${fileName} is empty. Writing empty array.\`);
+                    fs.writeFileSync(fileName, JSON.stringify([], null, 2));
+                  } else {
+                    fs.writeFileSync(fileName, JSON.stringify(pages, null, 2));
+                    console.log(\`Successfully backed up to \${fileName}\`);
+                  }
                 }
               }
             }
