@@ -34,7 +34,7 @@ jobs:
 
       - name: Step 2: Convert JSON to CSV
         run: node convert_csv.js
-        
+
       - name: Step 3: Commit and push changes
         run: |
           git config --global user.name 'GitHub Actions Bot'
