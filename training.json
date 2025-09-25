@@ -1,0 +1,280 @@
+[
+  {
+    "object": "page",
+    "id": "2799bb86-13ea-80b4-883b-e82e827cbac8",
+    "created_time": "2025-09-25T12:39:00.000Z",
+    "last_edited_time": "2025-09-25T12:48:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "2719bb86-13ea-80f5-a38d-c6d8a48166de"
+    },
+    "archived": false,
+    "in_trash": false,
+    "is_locked": false,
+    "properties": {
+      "Price": {
+        "id": "%3BYk%5E",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Free with registration for Cornell",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Free with registration for Cornell",
+            "href": null
+          }
+        ]
+      },
+      "URL": {
+        "id": "TkpS",
+        "type": "url",
+        "url": "https://socialsciences.cornell.edu/computing-and-data/workshops-and-training"
+      },
+      "💽 Tool": {
+        "id": "j_cF",
+        "type": "relation",
+        "relation": [
+          {
+            "id": "2729bb86-13ea-8058-97a2-dbcdb9bd8154"
+          }
+        ],
+        "has_more": false
+      },
+      "Resource Type": {
+        "id": "rubC",
+        "type": "select",
+        "select": {
+          "id": "76c3aabb-6868-4921-84ad-dbc106f10370",
+          "name": "Workshop",
+          "color": "gray"
+        }
+      },
+      "Format": {
+        "id": "smYa",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "fa4f514c-c6b5-4038-8177-4332dc444347",
+            "name": "Hybrid",
+            "color": "orange"
+          },
+          {
+            "id": "33af06a8-02ef-4b97-8672-39c46caaa26d",
+            "name": "Synchronous",
+            "color": "gray"
+          }
+        ]
+      },
+      "Provider/Author": {
+        "id": "tieu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Cornell / CCSS",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Cornell / CCSS",
+            "href": null
+          }
+        ]
+      },
+      "Description": {
+        "id": "%7BA_C",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Qualitative Methods Workshops",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Qualitative Methods Workshops",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Qualitative-Methods-Workshops-2799bb8613ea80b4883be82e827cbac8",
+    "public_url": "https://qualitativeaitools.notion.site/Qualitative-Methods-Workshops-2799bb8613ea80b4883be82e827cbac8"
+  },
+  {
+    "object": "page",
+    "id": "2799bb86-13ea-80af-afb3-ca03a756deac",
+    "created_time": "2025-09-25T03:29:00.000Z",
+    "last_edited_time": "2025-09-25T12:48:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "cover": null,
+    "icon": null,
+    "parent": {
+      "type": "database_id",
+      "database_id": "2719bb86-13ea-80f5-a38d-c6d8a48166de"
+    },
+    "archived": false,
+    "in_trash": false,
+    "is_locked": false,
+    "properties": {
+      "Price": {
+        "id": "%3BYk%5E",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Free with paid certificate",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Free with paid certificate",
+            "href": null
+          }
+        ]
+      },
+      "URL": {
+        "id": "TkpS",
+        "type": "url",
+        "url": "https://www.coursera.org/google-specializations/prompting-essentials-gwg"
+      },
+      "💽 Tool": {
+        "id": "j_cF",
+        "type": "relation",
+        "relation": [],
+        "has_more": false
+      },
+      "Resource Type": {
+        "id": "rubC",
+        "type": "select",
+        "select": {
+          "id": "110ac4ad-95eb-40d1-a0e8-2079ae99a25d",
+          "name": "MOOC",
+          "color": "green"
+        }
+      },
+      "Format": {
+        "id": "smYa",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "d60de32a-3c37-4490-9005-d05fc72dd783",
+            "name": "Online",
+            "color": "yellow"
+          },
+          {
+            "id": "479e12e1-3a5d-4e5b-aa2d-ca09cb868832",
+            "name": "Asynchronous",
+            "color": "green"
+          }
+        ]
+      },
+      "Provider/Author": {
+        "id": "tieu",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Google / Coursera",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Google / Coursera",
+            "href": null
+          }
+        ]
+      },
+      "Description": {
+        "id": "%7BA_C",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Prompting essentials",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Prompting essentials",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Prompting-essentials-2799bb8613ea80afafb3ca03a756deac",
+    "public_url": "https://qualitativeaitools.notion.site/Prompting-essentials-2799bb8613ea80afafb3ca03a756deac"
+  }
+]

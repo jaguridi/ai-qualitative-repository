@@ -1,0 +1,362 @@
+[
+  {
+    "object": "page",
+    "id": "2729bb86-13ea-8058-97a2-dbcdb9bd8154",
+    "created_time": "2025-09-18T09:04:00.000Z",
+    "last_edited_time": "2025-09-25T12:53:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "cover": null,
+    "icon": {
+      "type": "emoji",
+      "emoji": "📝"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "2349bb86-13ea-8026-a63e-c96760b36241"
+    },
+    "archived": false,
+    "in_trash": false,
+    "is_locked": false,
+    "properties": {
+      "Website": {
+        "id": "%3DF%3Er",
+        "type": "url",
+        "url": "https://www.maxqda.com/"
+      },
+      "Use cases": {
+        "id": "Fb%7Bm",
+        "type": "relation",
+        "relation": [],
+        "has_more": false
+      },
+      "Last Verified": {
+        "id": "LdVE",
+        "type": "last_edited_time",
+        "last_edited_time": "2025-09-25T12:53:00.000Z"
+      },
+      "Cornell Evaluation": {
+        "id": "ML%3E%3A",
+        "type": "select",
+        "select": {
+          "id": "efe1baf9-af4e-4a31-a813-f4fee6ab2dea",
+          "name": "No",
+          "color": "blue"
+        }
+      },
+      "Application Area": {
+        "id": "V%5EOW",
+        "type": "select",
+        "select": {
+          "id": "escN",
+          "name": "Qualitative Research",
+          "color": "gray"
+        }
+      },
+      "Pricing": {
+        "id": "XFaF",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "3752d989-8466-4032-918d-72d9ee9df1f0",
+            "name": "Subscription",
+            "color": "purple"
+          }
+        ]
+      },
+      "Company": {
+        "id": "%60OMD",
+        "type": "select",
+        "select": {
+          "id": "cb342669-20e6-4433-8801-e66016c78e61",
+          "name": "Verbi",
+          "color": "blue"
+        }
+      },
+      "Research stage": {
+        "id": "pDz~",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "98449498-bd4f-40bc-85be-2412a7930bde",
+            "name": "Analysis",
+            "color": "green"
+          },
+          {
+            "id": "6e084b6e-06a7-4bd3-ba74-38ae3154ac69",
+            "name": "Literature review",
+            "color": "yellow"
+          },
+          {
+            "id": "be84662a-b986-45a5-8daf-622edbdca373",
+            "name": "Data management",
+            "color": "red"
+          }
+        ]
+      },
+      "Resources": {
+        "id": "tfN%5C",
+        "type": "relation",
+        "relation": [
+          {
+            "id": "2799bb86-13ea-80b4-883b-e82e827cbac8"
+          }
+        ],
+        "has_more": false
+      },
+      "Research on the tool": {
+        "id": "xp%3Aw",
+        "type": "relation",
+        "relation": [],
+        "has_more": false
+      },
+      "Description": {
+        "id": "zOuK",
+        "type": "rich_text",
+        "rich_text": [
+          {
+            "type": "text",
+            "text": {
+              "content": "MAXQDA is a software for qualitative and mixed methods research, used to analyze diverse data such as interviews, surveys, and media files. It enables researchers to organize, code, and visualize information to uncover patterns and themes. The software integrates a feature called ",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "MAXQDA is a software for qualitative and mixed methods research, used to analyze diverse data such as interviews, surveys, and media files. It enables researchers to organize, code, and visualize information to uncover patterns and themes. The software integrates a feature called ",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": "AI Assist",
+              "link": null
+            },
+            "annotations": {
+              "bold": true,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "AI Assist",
+            "href": null
+          },
+          {
+            "type": "text",
+            "text": {
+              "content": ", which streamlines the analytical process by offering automatic transcription, summarizing documents and coded segments, suggesting relevant subcodes, and allowing researchers to conversationally interact with their data to ask questions and generate insights.",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": ", which streamlines the analytical process by offering automatic transcription, summarizing documents and coded segments, suggesting relevant subcodes, and allowing researchers to conversationally interact with their data to ask questions and generate insights.",
+            "href": null
+          }
+        ]
+      },
+      "Core Function": {
+        "id": "~pOZ",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "51afaaf0-274c-4fdd-acbd-9653b182b14e",
+            "name": "AI Coding",
+            "color": "purple"
+          },
+          {
+            "id": "c4291c4c-4085-4255-8b33-a2d457d39b51",
+            "name": "Data exploration",
+            "color": "brown"
+          },
+          {
+            "id": "fa0545e8-c74f-41ed-b7d5-26da1cfc8527",
+            "name": "Summarization",
+            "color": "gray"
+          }
+        ]
+      },
+      "Tool Name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "MaxQDA",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "MaxQDA",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/MaxQDA-2729bb8613ea805897a2dbcdb9bd8154",
+    "public_url": "https://qualitativeaitools.notion.site/MaxQDA-2729bb8613ea805897a2dbcdb9bd8154"
+  },
+  {
+    "object": "page",
+    "id": "2729bb86-13ea-8031-927d-c560af4ef828",
+    "created_time": "2025-09-18T09:03:00.000Z",
+    "last_edited_time": "2025-09-25T13:46:00.000Z",
+    "created_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "last_edited_by": {
+      "object": "user",
+      "id": "89ca4f81-65d0-43d1-9eeb-64036429dbbf"
+    },
+    "cover": null,
+    "icon": {
+      "type": "emoji",
+      "emoji": "📝"
+    },
+    "parent": {
+      "type": "database_id",
+      "database_id": "2349bb86-13ea-8026-a63e-c96760b36241"
+    },
+    "archived": false,
+    "in_trash": false,
+    "is_locked": false,
+    "properties": {
+      "Website": {
+        "id": "%3DF%3Er",
+        "type": "url",
+        "url": "gemini.google.com"
+      },
+      "Use cases": {
+        "id": "Fb%7Bm",
+        "type": "relation",
+        "relation": [
+          {
+            "id": "2799bb86-13ea-801c-bacf-dc8a022cd746"
+          }
+        ],
+        "has_more": false
+      },
+      "Last Verified": {
+        "id": "LdVE",
+        "type": "last_edited_time",
+        "last_edited_time": "2025-09-25T13:46:00.000Z"
+      },
+      "Cornell Evaluation": {
+        "id": "ML%3E%3A",
+        "type": "select",
+        "select": {
+          "id": "e2227cbe-c4c3-4521-a445-3102ecd8d6af",
+          "name": "Under review",
+          "color": "red"
+        }
+      },
+      "Application Area": {
+        "id": "V%5EOW",
+        "type": "select",
+        "select": {
+          "id": "\\;p{",
+          "name": "General Purpose",
+          "color": "yellow"
+        }
+      },
+      "Pricing": {
+        "id": "XFaF",
+        "type": "multi_select",
+        "multi_select": [
+          {
+            "id": "fe92b408-26d9-4bf8-8914-19739a3fa5fa",
+            "name": "Freemium",
+            "color": "brown"
+          }
+        ]
+      },
+      "Company": {
+        "id": "%60OMD",
+        "type": "select",
+        "select": {
+          "id": "70a9a03d-3c3c-475e-a907-5220b6197518",
+          "name": "Google",
+          "color": "green"
+        }
+      },
+      "Research stage": {
+        "id": "pDz~",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "Resources": {
+        "id": "tfN%5C",
+        "type": "relation",
+        "relation": [],
+        "has_more": false
+      },
+      "Research on the tool": {
+        "id": "xp%3Aw",
+        "type": "relation",
+        "relation": [],
+        "has_more": false
+      },
+      "Description": {
+        "id": "zOuK",
+        "type": "rich_text",
+        "rich_text": []
+      },
+      "Core Function": {
+        "id": "~pOZ",
+        "type": "multi_select",
+        "multi_select": []
+      },
+      "Tool Name": {
+        "id": "title",
+        "type": "title",
+        "title": [
+          {
+            "type": "text",
+            "text": {
+              "content": "Gemini",
+              "link": null
+            },
+            "annotations": {
+              "bold": false,
+              "italic": false,
+              "strikethrough": false,
+              "underline": false,
+              "code": false,
+              "color": "default"
+            },
+            "plain_text": "Gemini",
+            "href": null
+          }
+        ]
+      }
+    },
+    "url": "https://www.notion.so/Gemini-2729bb8613ea8031927dc560af4ef828",
+    "public_url": "https://qualitativeaitools.notion.site/Gemini-2729bb8613ea8031927dc560af4ef828"
+  }
+]
