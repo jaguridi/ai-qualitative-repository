@@ -69,4 +69,72 @@ jobs:
         run: node fetch_json.js
         env:
           NOTION_API_KEY: ${{ secrets.NOTION_API_KEY }}
-          NOTION_TOOLS_DB_ID: ${{ secrets.NOTION
+          NOTION_TOOLS_DB_ID: ${{ secrets.NOTION_TOOLS_DB_ID }}
+          NOTION_LITERATURE_DB_ID: ${{ secrets.NOTION_LITERATURE_DB_ID }}
+          NOTION_TRAINING_DB_ID: ${{ secrets.NOTION_TRAINING_DB_ID }}
+          NOTION_USE_CASES_DB_ID: ${{ secrets.NOTION_USE_CASES_DB_ID }}
+
+      - name: Create script to convert CSV
+        run: |
+          cat <<'EOF' > convert_csv.js
+          const fs = require('fs');
+          const files = ['tools.json', 'literature.json', 'training.json', 'use_cases.json'];
+          
+          function getPropertyValue(prop) {
+            if (!prop) return '';
+            switch (prop.type) {
+              case 'title': return prop.title[0]?.plain_text || '';
+              case 'rich_text': return prop.rich_text.map(rt => rt.plain_text).join('');
+              case 'number': return prop.number !== null ? String(prop.number) : '';
+              case 'url': return prop.url || '';
+              case 'select': return prop.select?.name || '';
+              case 'multi_select': return prop.multi_select.map(s => s.name).join(', ');
+              case 'email': return prop.email || '';
+              case 'date': return prop.date?.start || '';
+              case 'relation': return prop.relation.map(r => r.id).join(', ');
+              default: return '';
+            }
+          }
+          
+          function toCsvCell(str) {
+              str = String(str);
+              if (str.includes(',') || str.includes('"') || str.includes('\n')) {
+                  return '"' + str.replace(/"/g, '""') + '"';
+              }
+              return str;
+          }
+
+          for (const jsonFile of files) {
+            if (!fs.existsSync(jsonFile)) continue;
+            const data = JSON.parse(fs.readFileSync(jsonFile, 'utf8'));
+            if (data.length === 0) {
+              console.log(`${jsonFile} is empty, creating empty CSV.`);
+              const csvFile = jsonFile.replace('.json', '.csv');
+              fs.writeFileSync(csvFile, ""); // Create an empty file
+              continue;
+            }
+            const headers = Object.keys(data[0].properties);
+            const csvHeaders = headers.map(toCsvCell).join(',');
+            const csvRows = data.map(page => {
+              return headers.map(header => {
+                const value = getPropertyValue(page.properties[header]);
+                return toCsvCell(value);
+              }).join(',');
+            });
+            const csvContent = [csvHeaders, ...csvRows].join('\n');
+            const csvFile = jsonFile.replace('.json', '.csv');
+            fs.writeFileSync(csvFile, csvContent);
+            console.log(`Successfully converted ${jsonFile} to ${csvFile}`);
+          }
+          EOF
+          
+      - name: Step 2: Convert JSON to CSV
+        run: node convert_csv.js
+
+      - name: Step 3: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions Bot'
+          git config --global user.email 'actions@github.com'
+          git add .
+          git commit -m "Automated Notion backup (JSON + CSV) [$(date)]" || echo "No changes to commit"
+          git push
